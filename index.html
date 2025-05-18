@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Breach: Srimathi</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 18px;
+            padding: 20px;
+            overflow: hidden;
+        }
+        #output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #00FF00;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { background-color: transparent; }
+            50% { background-color: #00FF00; }
+        }
+        .notification {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000000;
+            color: #00FF00;
+            border: 1px solid #00FF00;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            width: 320px;
+            box-shadow: 0px 0px 20px #00FF00;
+            z-index: 10;
+        }
+        .notification button {
+            margin: 10px;
+            padding: 5px 10px;
+            font-size: 18px;
+            background-color: #00FF00;
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+        .notification button:hover {
+            background-color: #007700;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <div class="input-line">
+        user@system:~$ <span id="input-line"></span><span class="cursor"></span>
+    </div>
+
+    <div id="notification" class="notification">
+        <p>A connection has been established...</p>
+        <p>Authorization request: can I come to your small heart</p>
+        <p>I LOVE YOU.........</p>
+        <button onclick="deny()">Deny</button>
+        <button onclick="allow()">Allow</button>
+    </div>
+
+    <script>
+        const messages = [
+            "Initializing system breach...",
+            "Connecting to prisha's emotional firewall...",
+            "Firewall breached!",
+            "Injecting payload...",
+            "Analyzing emotions...",
+            "Error: Forbidden feelings detected!",
+            "Running: friendRequest.exe",
+            "Requesting permission to access your heart...",
+            "Processing request...",
+            "prisha, you've successfully bypassed all my defenses.",
+            "In this system, I request permanent access to your heart."
+        ];
+
+        let index = 0;
+        const output = document.getElementById("output");
+        const inputLine = document.getElementById("input-line");
+        const notification = document.getElementById("notification");
+
+        function typeMessage(message, callback) {
+            let i = 0;
+            const interval = setInterval(() => {
+                output.innerHTML += message.charAt(i);
+                i++;
+                if (i > message.length) {
+                    clearInterval(interval);
+                    output.innerHTML += "<br />";
+                    callback();
+                }
+            }, 50);
+        }
+
+        function nextMessage() {
+            if (index < messages.length) {
+                typeMessage(messages[index], nextMessage);
+                index++;
+            } else {
+                setTimeout(showNotification, 1000);
+            }
+        }
+
+        function showNotification() {
+            notification.style.display = "block";
+            document.querySelector('.cursor').style.display = 'none';
+        }
+
+        function allow() {
+            alert("Access Granted! Connection secured. Redirecting to your favorite human...");
+            window.open("https://www.instagram.com/_somesh._.0?igsh=MWxzMG0zb2ExNmFvbg=="); // Replace with your IG username
+            notification.style.display = "none";
+        }
+
+        function deny() {
+            alert("Access Denied! Request terminated. A rare connection has been lost.");
+            notification.style.display = "none";
+        }
+
+        nextMessage();
+    </script>
+</body>
+</html>
